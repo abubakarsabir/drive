@@ -1,8 +1,12 @@
 class PrequalifyPage {
   elements = {
     prequalifyBtn: () => cy.contains("p", "Pre-qualify"),
+    mainheading: () => cy.contains('p', "Pre-qualify in two minutes"),
+    individual: () => cy.contains('p', "Individual"),
     //form one
     nextbtn: () => cy.get('div[class="flex justify-end"] p:nth-child(1)'),
+    fmheading: () => cy.contains('p', 'First, tell us about yourself.'),
+    formname: () => cy.contains('div', 'Personal'),
     fone: () => cy.get('h3[class="font-abc-repro text-2xl md:text-3xl"]'),
     fname: () => cy.get('input[id="Primary.firstName"]'),
     lname: () => cy.get('input[id="Primary.lastName"]'),
@@ -26,6 +30,7 @@ class PrequalifyPage {
     jobtitle: () => cy.get('input[id="Primary.jobTitle"]'),
     gpay: () => cy.get('input[id="Primary.annualGrossIncome"]'),
     //form four
+    maintag: () => cy.contains('p', 'Pre-qualifying will not impact your credit score.'),
     nbtnthree: () => cy.get('div[class="flex justify-end"] p:nth-child(1)'),
     ssone: () => cy.get("#areaNumber"),
     sstwo: () => cy.get("#groupNumber"),
@@ -36,6 +41,7 @@ class PrequalifyPage {
     nbtnfour: () => cy.get('div[class="flex justify-end"] p:nth-child(1)'),
 
     //confirm page
+    fmaintag: () => cy.contains('p', 'Time to double check everything!'),
     side: () => cy.get('p[class="font-abc-repro"]'),
 
   };

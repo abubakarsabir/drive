@@ -41,7 +41,7 @@ Given("I launch the drive site and clicked the prequalify button", () => {
   pq.elements.prequalifyBtn().click();
   cy.url().should(
     "eq",
-    "https://drive-qa.santanderconsumerusa.com/?prequalify=true"
+    Cypress.config().baseUrl +'?prequalify=true'
   );
   pq.elements.mainheading().should("have.text", "Pre-qualify in two minutes");
   pq.elements.individual().should("have.text", "Individual");

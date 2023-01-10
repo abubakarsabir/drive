@@ -35,17 +35,26 @@ Then("The user tries various {string} within the condition tab", (options) => {
         case "New":
             scp.elements.newCheckBox().click()
             scp.elements.showCarsBtn().click()
-            cy.wait(5000)
+            .invoke('text').then((text) => {
+               expect(text.trim()).equal('Show 1695 cars');
+            });
+            cy.wait(8000)
             break;
         case "Used":
             scp.elements.usedCheckBox().click()
             scp.elements.showCarsBtn().click()
-            cy.wait(5000)
+            .invoke('text').then((text) => {
+                expect(text.trim()).equal('Show 1510 cars');
+             });
+            cy.wait(8000)
             break;
         case "Certified Pre-owned":
             scp.elements.certifiedCheckBox().click()
             scp.elements.showCarsBtn().click()
-            cy.wait(5000)
+            .invoke('text').then((text) => {
+                expect(text.trim()).equal('Show 238 cars');
+             });
+            cy.wait(8000)
             break;
 
 

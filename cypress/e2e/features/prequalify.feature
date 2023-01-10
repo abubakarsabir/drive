@@ -37,12 +37,12 @@ Feature: Testing prequalify form for different types of employment status
                 | residence| empstatus    | 
                 | rent     | employed     | 
                 | own      | employed     | 
-      #          | rent     | self employed|
-      #          | own      | self employed|
-       #         | rent     | retired      |
-      #          | own      | retired      |
-      #          | rent     | unemployed   |
-      #          | own      | unemployed   |
-      #          | rent     | other        |
-       #         | own      | other        |
+                | rent     | self employed|
+                | own      | self employed|
+                | rent     | retired      |
+                | own      | retired      |
+                | rent     | unemployed   |
+                | own      | unemployed   |
+                | rent     | other        |
+                | own      | other        |
         

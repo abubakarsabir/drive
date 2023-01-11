@@ -27,7 +27,7 @@ Then("The user tries various {string} within the condition tab", (options) => {
       scp.elements.newCheckBox().click();
       scp.elements
         .showCarsBtn()
-        .click({ force: true })
+        .click()
         .invoke("text")
         .then((text) => {
           try {
@@ -36,14 +36,16 @@ Then("The user tries various {string} within the condition tab", (options) => {
             console.log("Assertion not working for new option");
           }
         });
+
       scp.elements.conditionTab().click();
       scp.elements.cclear().click();
       break;
+
     case "Used":
       scp.elements.usedCheckBox().click();
       scp.elements
         .showCarsBtn()
-        .click({ force: true })
+        .click()
         .invoke("text")
         .then((text) => {
           try {
@@ -55,11 +57,12 @@ Then("The user tries various {string} within the condition tab", (options) => {
       scp.elements.conditionTab().click();
       scp.elements.cclear().click();
       break;
+
     case "Certified Pre-owned":
       scp.elements.certifiedCheckBox().click();
       scp.elements
         .showCarsBtn()
-        .click({ force: true })
+        .click()
         .invoke("text")
         .then((text) => {
           try {

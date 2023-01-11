@@ -9,7 +9,7 @@ class ShopCarsPage {
     shopCarsbtn: () => cy.contains("p", "Shop Cars"),
     headerText: () =>
       cy.contains("h6", "Get your rate and customize your terms."),
-    //condtion tab locators
+    //condition tab locators
     conditionTab: () => cy.get("h6").contains("Condition"),
     newCheckBox: () => cy.get('div[class="flex items-start"]').contains("New"),
     showCarsBtn: () =>
@@ -22,6 +22,17 @@ class ShopCarsPage {
       cy.get('div[class="flex items-start"]').contains("Used"),
     certifiedCheckBox: () =>
       cy.get('div[class="flex items-start"]').contains("Certified Pre-owned"),
+
+    cclear: () =>
+      cy
+        .get('span[class="flex cursor-pointer items-center gap-3"]')
+        .contains("Clear Condition"),
+
+    //body type locators
+    bodyTypeBtn: () =>
+      cy
+        .get('div[class="flex items-center space-x-2"]')
+        .contains("h6", "Body Type"),
   };
 }
 

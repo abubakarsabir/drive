@@ -16,28 +16,18 @@ Given("85301 is the zip code", () => {
 });
 
 When("The user selects the ShopCars tab", () => {
-  scp.elements.shopCarsbtn().click();
-  cy.url().should(
-    "eq",
-    Cypress.config().baseUrl + "cars?zip-code=85003&distance=50mi"
-  );
-  scp.elements
-    .headerText()
-    .invoke("text")
-    .then((text) => {
-      expect(text.trim()).equal("Get your rate and customize your terms.");
-    });
-  scp.elements.conditionTab().click();
-  cy.wait(5000);
+  cy.filtersTab();
 });
 
 Then("The user tries various {string} within the condition tab", (options) => {
+  scp.elements.conditionTab().click();
+
   switch (options) {
     case "New":
       scp.elements.newCheckBox().click();
       scp.elements
         .showCarsBtn()
-        .click()
+        .click({ force: true })
         .invoke("text")
         .then((text) => {
           try {
@@ -46,13 +36,14 @@ Then("The user tries various {string} within the condition tab", (options) => {
             console.log("Assertion not working for new option");
           }
         });
-      cy.wait(8000);
+      scp.elements.conditionTab().click();
+      scp.elements.cclear().click();
       break;
     case "Used":
       scp.elements.usedCheckBox().click();
       scp.elements
         .showCarsBtn()
-        .click()
+        .click({ force: true })
         .invoke("text")
         .then((text) => {
           try {
@@ -61,13 +52,14 @@ Then("The user tries various {string} within the condition tab", (options) => {
             console.log("Assertion not working for used option");
           }
         });
-      cy.wait(8000);
+      scp.elements.conditionTab().click();
+      scp.elements.cclear().click();
       break;
     case "Certified Pre-owned":
       scp.elements.certifiedCheckBox().click();
       scp.elements
         .showCarsBtn()
-        .click()
+        .click({ force: true })
         .invoke("text")
         .then((text) => {
           try {
@@ -76,7 +68,13 @@ Then("The user tries various {string} within the condition tab", (options) => {
             console.log("Assertion not working for certified option");
           }
         });
-      cy.wait(8000);
+      scp.elements.conditionTab().click();
+      scp.elements.cclear().click();
       break;
   }
+});
+
+When("The user selects the body type filter tab", () => {
+  cy.filtersTab();
+  scp.elements.bodyTypeBtn().click();
 });

@@ -23,3 +23,17 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+import { scp } from "@pages/ShopCarsPage";
+Cypress.Commands.add("filtersTab", () => {
+  scp.elements.shopCarsbtn().click();
+  cy.url().should(
+    "eq",
+    Cypress.config().baseUrl + "cars?zip-code=85003&distance=50mi"
+  );
+  scp.elements
+    .headerText()
+    .invoke("text")
+    .then((text) => {
+      expect(text.trim()).equal("Get your rate and customize your terms.");
+    });
+});

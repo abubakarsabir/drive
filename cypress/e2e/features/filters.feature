@@ -15,3 +15,18 @@ Feature: Shop Car Filters
      |New    |
      |Used   |   
      |Certified Pre-owned |
+
+  Scenario: body type filter testing 
+    When The user selects the body type filter tab
+  #  Then The user tries various "<bodytypes>" 
+
+  # Examples:
+  #   |bodytypes|
+   #  |convertible |
+   #  |coupe       |
+    # |hatchback   |    
+    # |minivan     |
+    # |sedan       |
+    # |suv         |
+    # |truck       |
+    # |wagon       | 

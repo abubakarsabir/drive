@@ -41,7 +41,8 @@ class ShopCarsPage {
       sedan:()=> cy.contains('p',"Sedan"),
       suv:()=> cy.contains('p',"SUV"),
       truck:()=> cy.contains('p',"Truck"),
-      wagon:()=> cy.contains('p',"Wagon")
+      wagon:()=> cy.contains('p',"Wagon"),
+      clearbt:()=> cy.contains('Clear Body Type')
 
   };
 }

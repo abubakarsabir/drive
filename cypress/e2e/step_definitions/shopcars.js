@@ -85,31 +85,69 @@ When("The user selects the body type filter tab", () => {
 Then("The user tries various {string} option", (bodytypes) => {
   switch (bodytypes) {
     case "convertible":
-      scp.elements.convertible()
-      .click();
+      scp.elements.convertible().click();
       cy.wait(6000);
       scp.elements.showCarsBtn().click();
+      scp.elements.bodyTypeBtn().click();
+      scp.elements.clearbt().click();
       break;
 
     case "coupe":
+      scp.elements.coupe().click();
+      cy.wait(6000);
+      scp.elements.showCarsBtn().click();
+      scp.elements.bodyTypeBtn().click();
+      scp.elements.clearbt().click();
       break;
 
     case "hatchback":
+      scp.elements.hatchBack().click();
+      cy.wait(6000);
+      scp.elements.showCarsBtn().click();
+      scp.elements.bodyTypeBtn().click();
+      scp.elements.clearbt().click();
+
       break;
 
     case "minivan":
+      scp.elements.miniVan().click();
+      cy.wait(6000);
+      scp.elements.showCarsBtn().click();
+      scp.elements.bodyTypeBtn().click();
+      scp.elements.clearbt().click();
+
       break;
 
     case "sedan":
+      scp.elements.sedan().click();
+      cy.wait(6000);
+      scp.elements.showCarsBtn().click();
+      scp.elements.bodyTypeBtn().click();
+      scp.elements.clearbt().click();
       break;
 
     case "suv":
+      scp.elements.suv().click();
+      cy.wait(6000);
+      scp.elements.showCarsBtn().click();
+      scp.elements.bodyTypeBtn().click();
+      scp.elements.clearbt().click();
       break;
 
     case "truck":
+      scp.elements.truck().click();
+      cy.wait(6000);
+      scp.elements.showCarsBtn().click();
+      scp.elements.bodyTypeBtn().click();
+      scp.elements.clearbt().click();
       break;
 
     case "wagon":
+      scp.elements.wagon().click();
+      cy.wait(6000);
+      scp.elements.showCarsBtn().click();
+      scp.elements.bodyTypeBtn().click();
+      scp.elements.clearbt().click();
       break;
   }
 });

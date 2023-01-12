@@ -21,12 +21,12 @@ Feature: Shop Car Filters
     Then The user tries various "<bodytypes>" option
 
   Examples:
-     |bodytypes|
+     |bodytypes   |
      |convertible |
-   #  |coupe       |
-    # |hatchback   |    
-    # |minivan     |
-    # |sedan       |
-    # |suv         |
-    # |truck       |
-    # |wagon       | 
+     |coupe       |
+     |hatchback   |    
+     |minivan     |
+     |sedan       |
+     |suv         |
+     |truck       |
+     |wagon       | 

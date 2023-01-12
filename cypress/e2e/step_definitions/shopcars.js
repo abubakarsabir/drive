@@ -81,3 +81,35 @@ When("The user selects the body type filter tab", () => {
   cy.filtersTab();
   scp.elements.bodyTypeBtn().click();
 });
+
+Then("The user tries various {string} option", (bodytypes) => {
+  switch (bodytypes) {
+    case "convertible":
+      scp.elements.convertible()
+      .click();
+      cy.wait(6000);
+      scp.elements.showCarsBtn().click();
+      break;
+
+    case "coupe":
+      break;
+
+    case "hatchback":
+      break;
+
+    case "minivan":
+      break;
+
+    case "sedan":
+      break;
+
+    case "suv":
+      break;
+
+    case "truck":
+      break;
+
+    case "wagon":
+      break;
+  }
+});

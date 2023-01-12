@@ -33,6 +33,16 @@ class ShopCarsPage {
       cy
       .get('div[class="flex items-center space-x-2"]')
       .contains("h6", "Body Type"),
+      
+      convertible:()=> cy.contains('p','Convertible'),
+      coupe:()=> cy.contains('p',"Coupe"),
+      hatchBack:()=> cy.contains('p',"Hatchback"),
+      miniVan:()=> cy.contains('p',"Minivan"),
+      sedan:()=> cy.contains('p',"Sedan"),
+      suv:()=> cy.contains('p',"SUV"),
+      truck:()=> cy.contains('p',"Truck"),
+      wagon:()=> cy.contains('p',"Wagon")
+
   };
 }
 

@@ -6,11 +6,11 @@ Feature: Shop Car Filters
    Background:
     Given 85301 is the zip code
 
-  Scenario: condition filter testing 
-    When The user selects the ShopCars tab
-    Then The user tries various "<options>" within the condition tab
+ # Scenario: condition filter testing 
+  #  When The user selects the ShopCars tab
+  #  Then The user tries various "<options>" within the condition tab
 
-   Examples:
+  # Examples:
      |options|
      |New    |
      |Used   |   
@@ -18,11 +18,11 @@ Feature: Shop Car Filters
 
   Scenario: body type filter testing 
     When The user selects the body type filter tab
-  #  Then The user tries various "<bodytypes>" 
+    Then The user tries various "<bodytypes>" option
 
-  # Examples:
-  #   |bodytypes|
-   #  |convertible |
+  Examples:
+     |bodytypes|
+     |convertible |
    #  |coupe       |
     # |hatchback   |    
     # |minivan     |

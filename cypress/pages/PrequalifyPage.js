@@ -4,6 +4,7 @@ class PrequalifyPage {
     mainheading: () => cy.contains('p', "Pre-qualify in two minutes"),
     individual: () => cy.contains('p', "Individual"),
     //form one
+
     nextbtn: () => cy.get('div[class="flex justify-end"] p:nth-child(1)'),
     fmheading: () => cy.contains('p', 'First, tell us about yourself.'),
     formname: () => cy.contains('div', 'Personal'),
@@ -14,6 +15,7 @@ class PrequalifyPage {
     ceaddress: () => cy.get('input[id="Primary.emailConfirm"]'),
     phonenumber: () => cy.get('input[id="Primary.phoneNumber"]'),
     nbtnone: () => cy.get(".inset-x-0 > .justify-end"),
+
     //form two
     addone: () => cy.get('input[id="Primary.streetAddress1"]'),
     addtwo: () => cy.get('input[id="Primary.streetAddress2"]'),
@@ -23,12 +25,14 @@ class PrequalifyPage {
     rent: () => cy.get(".space-y-6 > .text-center > :nth-child(1)"),
     own: () => cy.get(".space-y-6 > .text-center > :nth-child(2)"),
     income: () => cy.get('input[id="Primary.monthlyPayment"]'),
-    nbtntwo: () => cy.contains("Next"),
+
     //form three
-    estatus: () => cy.get(".css-ackcql>input"),
-    empname: () => cy.get('input[id="Primary.employerName"]'),
+    estatus: () => cy.contains("Employment Status"),
+    empname: () => cy.get('div[class="relative"]')
+      .find('input[id="Primary.employerName"]'),
     jobtitle: () => cy.get('input[id="Primary.jobTitle"]'),
     gpay: () => cy.get('input[id="Primary.annualGrossIncome"]'),
+
     //form four
     maintag: () => cy.contains('p', 'Pre-qualifying will not impact your credit score.'),
     nbtnthree: () => cy.get('div[class="flex justify-end"] p:nth-child(1)'),
@@ -38,7 +42,6 @@ class PrequalifyPage {
     dobone: () => cy.get('label[for="month"]'),
     dobtwo: () => cy.get('label[for="day"]'),
     dobthree: () => cy.get('label[for="year"]'),
-    nbtnfour: () => cy.get('div[class="flex justify-end"] p:nth-child(1)'),
 
     //confirm page
     fmaintag: () => cy.contains('p', 'Time to double check everything!'),

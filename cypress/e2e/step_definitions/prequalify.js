@@ -1,36 +1,6 @@
-import {
-  Given,
-  When,
-  Then
-} from "@badeball/cypress-cucumber-preprocessor";
-import {
-  pq
-} from "@pages/PrequalifyPage";
-beforeEach(() => {
-  cy.fixture("forms.json").then((forms) => {
-    fname = forms[0].firstName;
-    lname = forms[0].lastName;
-    eaddress = forms[0].emailAddress;
-    caddress = forms[0].cemailAddress;
-    pnumber = forms[0].phoneNumber;
+import { Given, When, Then } from "@badeball/cypress-cucumber-preprocessor";
+import { pq } from "@pages/PrequalifyPage";
 
-    addOne = forms[1].addOne;
-    addTwo = forms[1].addTwo;
-    city = forms[1].city;
-    code = forms[1].zip;
-    mpayment = forms[1].monthlyPayment;
-
-    ename = forms[2].employerName;
-    job = forms[2].jobTitle;
-    grossSalary = forms[2].grossIncome;
-
-    ssone = forms[3].ssone;
-    sstwo = forms[3].sstwo;
-    ssthree = forms[3].ssthree;
-
-
-  });
-});
 Given("I launch the drive site and clicked the prequalify button", () => {
   cy.visit("/", {
     headers: {
@@ -39,214 +9,186 @@ Given("I launch the drive site and clicked the prequalify button", () => {
     },
   });
   pq.elements.prequalifyBtn().click();
-  cy.url().should(
-    "eq",
-    Cypress.config().baseUrl +'?prequalify=true'
-  );
+  cy.url().should("eq", Cypress.config().baseUrl + "?prequalify=true");
   pq.elements.mainheading().should("have.text", "Pre-qualify in two minutes");
   pq.elements.individual().should("have.text", "Individual");
   pq.elements.nextbtn().click();
   pq.elements.fone().should("have.text", "Pre-qualify");
 });
 //form one
-When("I entered the username", () => {
-  pq.elements.fmheading().should("have.text", "First, tell us about yourself.");
-  pq.elements.formname().should("have.text", "Personal");
-  pq.elements
-    .fname()
-    .type(fname)
-    .should("have.attr", "type", "text")
-    .and("be.visible");
-});
+When(
+  "The user completes the form by entering personal information",
+  (datatable) => {
+    pq.elements
+      .fmheading()
+      .should("have.text", "First, tell us about yourself.");
+    pq.elements.formname().should("have.text", "Personal");
 
-When("I entered the lastname", () => {
-  pq.elements
-    .lname()
-    .type(lname)
-    .should("have.attr", "type", "text")
-    .and("be.visible");
-});
+    datatable.hashes().forEach((element) => {
+      pq.elements
+        .fname()
+        .type(element.username)
+        .should("have.attr", "type", "text")
+        .and("be.visible");
+      pq.elements
+        .lname()
+        .type(element.lastname)
+        .should("have.attr", "type", "text")
+        .and("be.visible");
+      pq.elements
+        .eaddress()
+        .type(element.emailaddress)
+        .should("have.attr", "type", "text")
+        .and("be.visible");
+      pq.elements
+        .ceaddress()
+        .type(element.confirmemailaddress)
+        .should("have.attr", "type", "text")
+        .and("be.visible");
+      pq.elements
+        .phonenumber()
+        .type(element.phonenumber)
+        .should("have.attr", "type", "tel")
+        .and("be.visible");
+    });
+  }
+);
 
-When("I entered the emailaddress", () => {
-  pq.elements
-    .eaddress()
-    .type(eaddress)
-    .should("have.attr", "type", "text")
-    .and("be.visible");
-});
-
-When("I entered the confirmemailaddress", () => {
-  pq.elements
-    .ceaddress()
-    .type(caddress)
-    .should("have.attr", "type", "text")
-    .and("be.visible");
-});
-
-When("I entered the phonenumber", () => {
-  pq.elements
-    .phonenumber()
-    .type(pnumber)
-    .should("have.attr", "type", "tel")
-    .and("be.visible");
-});
-
-Then("I clicked the next button one", () => {
+Then("I pressed the next button", () => {
   pq.elements.nbtnone().click();
 });
 
 //form two
-When("I entered the addone", () => {
-  pq.elements
-    .addone()
-    .type(addOne)
-    .should("have.attr", "type", "text")
-    .and("be.visible");
-});
+Then(
+  "The user completes the form by entering residential information",
+  (datatable) => {
+    datatable.hashes().forEach((element) => {
+      pq.elements
+        .addone()
+        .type(element.addone)
+        .should("have.attr", "type", "text")
+        .and("be.visible");
 
-When("I entered the addtwo", () => {
-  pq.elements
-    .addtwo()
-    .type(addTwo)
-    .should("have.attr", "type", "text")
-    .and("be.visible");
-});
+      pq.elements
+        .addtwo()
+        .type(element.addtwo)
+        .should("have.attr", "type", "text")
+        .and("be.visible");
 
-When("I entered the city", () => {
-  pq.elements
-    .city()
-    .type(city)
-    .should("have.attr", "type", "text")
-    .and("be.visible");
-});
+      pq.elements
+        .city()
+        .type(element.city)
+        .should("have.attr", "type", "text")
+        .and("be.visible");
 
-When("I entered the zipcode", () => {
-  pq.elements
-    .zip()
-    .type(code)
-    .should("have.attr", "type", "text")
-    .and("be.visible");
-});
+      pq.elements
+        .zip()
+        .type(element.zipcode)
+        .should("have.attr", "type", "text")
+        .and("be.visible");
 
-When("I selected the state", () => {
-  pq.elements
-    .state()
-    .type("Arizona{enter}")
-    .should("have.attr", "type", "text");
-});
+      pq.elements
+        .state()
+        .type(element.state + "{enter}")
+        .should("have.attr", "type", "text");
 
-Then("I selected the {string}", (residence) => {
-  switch (residence) {
-    case "rent":
-      pq.elements.rent().click();
-      break;
-    case "own":
-      pq.elements.own().click();
-      break;
+      console.log(element.residence);
+      switch (element.residence) {
+        case "rent":
+          pq.elements.rent().click();
+          break;
+        case "own":
+          pq.elements.own().click();
+          break;
+      }
+      pq.elements
+        .income()
+        .type(element.mpayment)
+        .should("have.attr", "type", "text")
+        .and("be.visible");
+    });
   }
-});
+);
 
-When("I entered the monthlypayment", () => {
-  pq.elements
-    .income()
-    .type(mpayment)
-    .should("have.attr", "type", "text")
-    .and("be.visible");
-});
-
-Then("I clicked the next button two", () => {
-  pq.elements.nbtntwo().click({
-    force: true,
-  });
-  cy.wait(5000);
-});
 //form three
-Then("I selected different {string}", (empstatus) => {
-  switch (empstatus) {
-    case "employed":
+Then(
+  "The user completes the form by entering employment information",
+  (datatable) => {
+    datatable.hashes().forEach((element) => {
+      switch (element.empstatus) {
+        case "employed":
+          pq.elements.estatus().type(element.empstatus + "{enter}");
+          break;
+        case "self employed":
+          pq.elements.estatus().type(element.empstatus + "{enter}");
+          break;
+        case "retired":
+          pq.elements.estatus().type(element.empstatus + "{enter}");
+
+          break;
+        case "unemployed":
+          pq.elements.estatus().type(element.empstatus + "{enter}");
+
+          break;
+        case "other":
+          pq.elements.estatus().type(element.empstatus + "{enter}");
+
+          break;
+      }
+
+      pq.elements.empname().type(element.empname, { force: true });
+
       pq.elements
-        .estatus()
-        .type("Employed{enter}")
-        .should("have.attr", "type", "text");
-      break;
-    case "self employed":
+        .jobtitle()
+        .type(element.jobtitle, {
+          force: true,
+        })
+        .should("have.attr", "type", "text")
+        .and("be.visible");
+
       pq.elements
-        .estatus()
-        .type("Self Employed{enter}")
-        .should("have.attr", "type", "text");
-      break;
-    case "retired":
-      pq.elements
-        .estatus()
-        .type("Retired{enter}")
-        .should("have.attr", "type", "text");
-      break;
-    case "unemployed":
-      pq.elements
-        .estatus()
-        .type("Unemployed{enter}")
-        .should("have.attr", "type", "text");
-      break;
-    case "other":
-      pq.elements
-        .estatus()
-        .type("Other{enter}")
-        .should("have.attr", "type", "text");
-      break;
+        .gpay()
+        .type(element.grossincome, {
+          force: true,
+        })
+        .should("have.attr", "type", "text")
+        .and("be.visible");
+    });
   }
-});
+);
 
-When("I entered employername", () => {
-  pq.elements.empname().type(ename, {
-      force: true,
-    }).should("have.attr", "type", "text")
-    .and("be.visible");
-});
-
-When("I entered the jobtitle", () => {
-  pq.elements.jobtitle().type(job, {
-      force: true,
-    }).should("have.attr", "type", "text")
-    .and("be.visible");
-});
-
-When("I entered the grossannualincome", () => {
-  pq.elements.gpay().type(grossSalary, {
-      force: true,
-    }).should("have.attr", "type", "text")
-    .and("be.visible");
-});
-
-Then("I clicked the next button three", () => {
-  pq.elements.nbtnthree().click();
-  pq.elements.maintag()
-    .should("have.text", "Pre-qualifying will not impact your credit score.");
-});
 //form four
-When("I entered the socialsecuritynumber", () => {
-  pq.elements.ssone().type(ssone)
-    .should("have.attr", "type", "tel")
-    .and("be.visible");
-  pq.elements.sstwo().type(sstwo).should("have.attr", "type", "tel")
-    .and("be.visible");
-  pq.elements.ssthree().type(ssthree).should("have.attr", "type", "tel")
-    .and("be.visible");
+Then("The user completes the form by credit score information", (datatable) => {
+  datatable.hashes().forEach((element) => {
+    pq.elements
+      .ssone()
+      .type(element.ssone)
+      .should("have.attr", "type", "tel")
+      .and("be.visible");
+    pq.elements
+      .sstwo()
+      .type(element.sstwo)
+      .should("have.attr", "type", "tel")
+      .and("be.visible");
+    pq.elements
+      .ssthree()
+      .type(element.ssthree)
+      .should("have.attr", "type", "tel")
+      .and("be.visible");
+
+    pq.elements.dobone().type(element.month +"{enter}");
+    pq.elements.dobtwo().type(element.day +"{enter}");
+    pq.elements.dobthree().type(element.year +"{enter}");
+  });
 });
 
-When("I entered the dob", () => {
-  pq.elements.dobone().type("01{enter}");
-  pq.elements.dobtwo().type("23{enter}");
-  pq.elements.dobthree().type("1992{enter}");
-});
-
-Then("I clicked the next button four", () => {
-  pq.elements.nbtnfour().click();
-});
 
 //final page
 
-When("I checked the checkboxes", () => {
-  pq.elements.fmaintag().should('have.text', "Time to double check everything!");
+Then("I checked the checkboxes", () => {
+  pq.elements
+    .fmaintag()
+    .should("have.text", "Time to double check everything!");
   pq.elements.side().first().click();
   pq.elements.side().last().click();
 });
